@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UmurController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -85,6 +86,18 @@ Route::get('halaman-kedua', [PageController::class,'halamanKedua'])
 Route::get('movie-cetak', [MovieController::class, 'cetakFilm'])->name('movie.cetak');
 
 Route::resource('movie', MovieController::class);
+
+// Route tentang umur 
+Route::prefix('umur')->group(function(){
+
+    // Halaman Form Umur
+    Route::get('form-umur', [UmurController::class, 'form'])
+    ->name('umur.form');
+    
+    // Halaman Tujuan
+    // Proses Membaca data umur
+
+});
 
 
 

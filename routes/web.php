@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -68,11 +70,16 @@ Route::prefix('training')->group(function () {
             return "selamat datang di kelas mtcre";
         })->name('kelas.mtcre');
     });
-
-
-
-
 });
 
+
+// Memanggil Route dengan action yang ada pada controller
+Route::get('halaman-pertama', [PageController::class,'halamanPertama'])
+->name('halaman.pertama');
+
+Route::get('halaman-kedua', [PageController::class,'halamanKedua'])
+->name('halaman.kedua');
+
+Route::resource('movie', MovieController::class);
 
 

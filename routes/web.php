@@ -96,7 +96,7 @@ Route::prefix('umur')->group(function(){
 
     // Halaman Tujuan
     Route::get('sukses', [UmurController::class, 'sukses'])
-    ->name('umur.sukses');
+    ->middleware('umur')->name('umur.sukses');
 
     // Proses Membaca data umur
     Route::post('proses', [UmurController::class, 'proses'])

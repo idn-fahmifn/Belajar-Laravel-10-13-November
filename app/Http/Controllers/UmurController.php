@@ -29,6 +29,12 @@ class UmurController extends Controller
             'nama.min' =>'Masukan nama minimal 3 karakter.',
             'nama.max' =>'Masukan nama maksimal 30 karakter.',
         ]);
+
+        // membawa data umur agar bisa dibaca di middleware umur
+
+        $request->session()->put('age', $request->umur);
+
+        return redirect()->route('umur.sukses');
     }
 }
 

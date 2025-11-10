@@ -15,6 +15,18 @@ class UmurMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request); //mengizinkan untuk mengakses route yang dituju.
+
+
+        // jika umurnya lebibh dari 18 diizikan masuk.
+        // tangkap variabel dari session age
+        $umur = $request->session()->get('age');
+
+        if ($umur >= 18) {
+            return $next($request); //mengizinkan untuk mengakses route yang dituju.
+        }
+
+        return redirect()->route('umur.form')
+        ->with('ditolak', 'Umur belum cukup');
+
     }
 }

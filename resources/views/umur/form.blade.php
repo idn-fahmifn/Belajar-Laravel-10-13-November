@@ -13,6 +13,8 @@
 
     <div class="container mt-4">
         <div class="card p-2">
+
+            {{-- Error validasi --}}
             @if ($errors->any())
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     <strong>Yahh ada error</strong>
@@ -25,6 +27,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+
+            {{-- Error ditolak --}}
+            @session('ditolak')
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Yahh belum diizinkan masuk</strong>
+                {{ session('ditolak') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endsession
             <div class="card-body">
                 <form action="{{ route('umur.proses') }}" method="post">
                     @csrf

@@ -13,13 +13,13 @@
             <div class="card-body">
                 <form action="" method="post">
                     {{-- input nama --}}
-                    <div class="form-group">
+                    <div class="form-group mt-2">
                         <label for="">Nama Lengkap</label>
-                        <input type="text" name="nama" required>
+                        <input type="text" class="form-control" name="nama" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-2">
                         <label for="">Umur</label>
-                        <input type="number" name="umur" required>
+                        <input type="number" class="form-control" name="umur" required>
                     </div>
                     <div class="mt-2">
                         <button type="submit" class="btn btn-info">Masuk</button>

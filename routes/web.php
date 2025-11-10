@@ -93,9 +93,14 @@ Route::prefix('umur')->group(function(){
     // Halaman Form Umur
     Route::get('form-umur', [UmurController::class, 'form'])
     ->name('umur.form');
-    
+
     // Halaman Tujuan
+    Route::get('sukses', [UmurController::class, 'sukses'])
+    ->name('umur.sukses');
+
     // Proses Membaca data umur
+    Route::post('proses', [UmurController::class, 'proses'])
+    ->name('umur.proses');
 
 });
 

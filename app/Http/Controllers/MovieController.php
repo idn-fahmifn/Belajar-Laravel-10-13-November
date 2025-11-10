@@ -68,4 +68,9 @@ class MovieController extends Controller
     {
         //
     }
+
+    public function cetakFilm()
+    {
+        return "Film siap dicetak";
+    }
 }

@@ -80,6 +80,11 @@ Route::get('halaman-pertama', [PageController::class,'halamanPertama'])
 Route::get('halaman-kedua', [PageController::class,'halamanKedua'])
 ->name('halaman.kedua');
 
+
+// cetak dibaca sebagai parameter
+Route::get('movie-cetak', [MovieController::class, 'cetakFilm'])->name('movie.cetak');
+
 Route::resource('movie', MovieController::class);
+
 
 

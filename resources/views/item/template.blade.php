@@ -40,9 +40,10 @@
         <div class="row">
             <div class="col-md-6">
                 <h5>@yield('page-title')</h5>
+                <span class="text-muted">@yield('sub-title')</span>
             </div>
             <div class="col-md-6 text-end">
-                <span class="text-muted">@yield('sub-title')</span>
+                @yield('button')
             </div>
         </div>
         {{-- area tabel --}}

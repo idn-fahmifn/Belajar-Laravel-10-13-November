@@ -38,24 +38,25 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Barang Baru</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="" method="post">
+                <form action="{{ route('item.store') }}" 
+                method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group py-2 mx-2">
                             <label for="">Nama Barang</label>
-                            <input type="text" name="nama_barang" class="form-control mt-2">
+                            <input type="text" name="nama_barang" required class="form-control mt-2">
                         </div>
                         <div class="form-group py-2 mx-2">
                             <label for="">Harga</label>
-                            <input type="number" name="harga" class="form-control mt-2">
+                            <input type="number" name="harga" required class="form-control mt-2">
                         </div>
                          <div class="form-group py-2 mx-2">
                             <label for="">Stok</label>
-                            <input type="number" name="stok" class="form-control mt-2">
+                            <input type="number" name="stok" required class="form-control mt-2">
                         </div>
                         <div class="form-group py-2 mx-2">
                             <label for="">Gambar</label>
-                            <input type="file" name="gambar_produk" class="form-control mt-2">
+                            <input type="file" name="gambar_produk" required class="form-control mt-2">
                         </div>
                     </div>
                     <div class="modal-footer">

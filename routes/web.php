@@ -115,5 +115,10 @@ Route::get('barang/{param}', [PageController::class, 'halamanDetail'])
 // CRUD ITEM 
 
 // Route index
-Route::get('list-item', [ItemController::class, 'index'])->name('item.index');
+Route::get('list-item', [ItemController::class, 'index'])
+->name('item.index');
+
+// Route post
+Route::post('simpan-barang', [ItemController::class, 'store'])
+->name('item.store');
 

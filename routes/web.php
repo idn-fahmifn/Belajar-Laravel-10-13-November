@@ -101,8 +101,16 @@ Route::prefix('umur')->group(function(){
     // Proses Membaca data umur
     Route::post('proses', [UmurController::class, 'proses'])
     ->name('umur.proses');
-
 });
 
+// Membuat routing untuk menampilkan data barang.
+Route::get('barang', [PageController::class, 'halamanBarang'])
+->name('halaman.barang');
+
+// routing untuk detail.
+Route::get('barang/{param}', [PageController::class, 'halamanDetail'])
+->name('barang.detail');
+
+Route::view('tampilan','item.template');
 
 

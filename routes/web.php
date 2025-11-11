@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UmurController;
@@ -111,6 +112,8 @@ Route::get('barang', [PageController::class, 'halamanBarang'])
 Route::get('barang/{param}', [PageController::class, 'halamanDetail'])
 ->name('barang.detail');
 
-Route::view('tampilan','item.template');
+// CRUD ITEM 
 
+// Route index
+Route::get('list-item', [ItemController::class, 'index'])->name('item.index');
 

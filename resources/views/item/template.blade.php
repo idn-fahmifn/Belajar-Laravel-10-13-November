@@ -36,8 +36,16 @@
         </div>
     </nav>
 
-    <div class="container mt-4 bg-primary py-4">
-
+    <div class="container mt-4 py-4 border">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>@yield('page-title')</h5>
+            </div>
+            <div class="col-md-6 text-end">
+                <span class="text-muted">@yield('sub-title')</span>
+            </div>
+        </div>
+        {{-- area tabel --}}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"

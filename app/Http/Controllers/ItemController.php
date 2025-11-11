@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -17,8 +18,8 @@ class ItemController extends Controller
     {
         $simpan = [
             'item_name' => $request->input('nama_barang'),
-            'price' => $request->input('nama_barang'),
-            'stok' => $request->input('nama_barang'),
+            'price' => $request->input('harga'),
+            'stok' => $request->input('stok'),
             'slug' => Str::slug($request->input('nama_barang')),
         ];
         // gambar
@@ -29,11 +30,15 @@ class ItemController extends Controller
             $format = $gambar->getClientOriginalExtension();
             $nama = 'Image-items_'.Carbon::now()->format('Ymdhis').'.'.$format;
 
+            // meyimpan ke storage
+            $gambar->storeAs($path, $nama);
             // disimpan ke database
             $simpan['image'] = $nama;
         }
 
-        return $simpan;
+        Item::create($simpan);
+        return redirect()->route('item.index');
+        
 
     }
 

@@ -11,7 +11,7 @@
 
 @section('button')
     {{-- button create --}}
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CreateBarang">
+    <button type="button" class="btn btn-transparent border" data-bs-toggle="modal" data-bs-target="#CreateBarang">
         Tambah Barang
     </button>
 @endsection
@@ -35,16 +35,34 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Barang Baru</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                <form action="" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group py-2 mx-2">
+                            <label for="">Nama Barang</label>
+                            <input type="text" name="nama_barang" class="form-control mt-2">
+                        </div>
+                        <div class="form-group py-2 mx-2">
+                            <label for="">Harga</label>
+                            <input type="number" name="harga" class="form-control mt-2">
+                        </div>
+                         <div class="form-group py-2 mx-2">
+                            <label for="">Stok</label>
+                            <input type="number" name="stok" class="form-control mt-2">
+                        </div>
+                        <div class="form-group py-2 mx-2">
+                            <label for="">Gambar</label>
+                            <input type="file" name="gambar_produk" class="form-control mt-2">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Simpan Barang</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

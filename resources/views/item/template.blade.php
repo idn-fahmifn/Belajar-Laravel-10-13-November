@@ -46,6 +46,9 @@
             </div>
         </div>
         {{-- area tabel --}}
+        <div class="row my-4">
+            @yield('content')
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"

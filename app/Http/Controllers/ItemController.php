@@ -12,16 +12,26 @@ class ItemController extends Controller
 {
     public function index()
     {
-        return view('item.index');
+        $data = Item::all();
+        return view('item.index', compact('data'));
     }
     public function store(Request $request)
     {
+        // $request = $request;
+        $request->validate([
+            'nama_barang' => ['required', 'string', 'min:5', 'max:50'],
+            'harga' => ['required', 'numeric', 'min:500', 'max:5000000'],
+            'stok' => ['required', 'numeric', 'min:0', 'max:100'],
+            'gambar_produk' => ['required', 'file', 'mimes:png,jpg,jpeg,svg,heic', 'max:10240'],
+        ]);
+
         $simpan = [
             'item_name' => $request->input('nama_barang'),
             'price' => $request->input('harga'),
             'stok' => $request->input('stok'),
             'slug' => Str::slug($request->input('nama_barang')),
         ];
+        
         // gambar
         if($request->hasFile('gambar_produk'))
         {
@@ -38,7 +48,6 @@ class ItemController extends Controller
 
         Item::create($simpan);
         return redirect()->route('item.index');
-        
 
     }
 

@@ -95,7 +95,11 @@ class ItemController extends Controller
             $simpan['image'] = $nama;
         }
 
-        return $simpan;
+        $data->update($simpan);
+
+        return redirect()->route('item.detail', $data->slug);
+
+        
 
     }
 

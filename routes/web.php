@@ -130,3 +130,7 @@ Route::get('item/{param}', [ItemController::class, 'detail'])
 Route::put('item/{param}', [ItemController::class, 'update'])
 ->name('item.update');
 
+// Route update
+Route::delete('item/{param}', [ItemController::class, 'destroy'])
+->name('item.destroy');
+

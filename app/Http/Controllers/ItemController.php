@@ -31,14 +31,13 @@ class ItemController extends Controller
             'stok' => $request->input('stok'),
             'slug' => Str::slug($request->input('nama_barang')),
         ];
-        
+
         // gambar
-        if($request->hasFile('gambar_produk'))
-        {
+        if ($request->hasFile('gambar_produk')) {
             $gambar = $request->file('gambar_produk'); //mengambil gambar untuk diolah
             $path = 'public/images/items'; //membuat path untuk penyimpanan gambar
             $format = $gambar->getClientOriginalExtension();
-            $nama = 'Image-items_'.Carbon::now()->format('Ymdhis').'.'.$format;
+            $nama = 'Image-items_' . Carbon::now()->format('Ymdhis') . '.' . $format;
 
             // meyimpan ke storage
             $gambar->storeAs($path, $nama);
@@ -74,12 +73,10 @@ class ItemController extends Controller
             'slug' => Str::slug($request->input('nama_barang')),
         ];
 
-         // gambar
-        if($request->hasFile('gambar_produk'))
-        {
-            $path_lama = 'public/images/items/'.$data->image;
-            if($data->image && Storage::exists($path_lama))
-            {
+        // gambar
+        if ($request->hasFile('gambar_produk')) {
+            $path_lama = 'public/images/items/' . $data->image;
+            if ($data->image && Storage::exists($path_lama)) {
                 // gambar lama akan dihapus
                 Storage::delete($path_lama);
             }
@@ -87,7 +84,7 @@ class ItemController extends Controller
             $gambar = $request->file('gambar_produk'); //mengambil gambar untuk diolah
             $path = 'public/images/items'; //membuat path untuk penyimpanan gambar
             $format = $gambar->getClientOriginalExtension();
-            $nama = 'Image-items_'.Carbon::now()->format('Ymdhis').'.'.$format;
+            $nama = 'Image-items_' . Carbon::now()->format('Ymdhis') . '.' . $format;
 
             // meyimpan ke storage
             $gambar->storeAs($path, $nama);
@@ -98,9 +95,18 @@ class ItemController extends Controller
         $data->update($simpan);
 
         return redirect()->route('item.detail', $data->slug);
+    }
 
-        
-
+    public function destroy($param)
+    {
+        $data = Item::findOrFail($param); //mengambil data dari id yang dipilih.
+        $path_lama = 'public/images/items/' . $data->image;
+        if ($data->image && Storage::exists($path_lama)) {
+            // gambar lama akan dihapus
+            Storage::delete($path_lama);
+        }
+        $data->delete();
+        return redirect()->route('item.index');
     }
 
 }

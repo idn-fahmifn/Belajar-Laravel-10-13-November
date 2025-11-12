@@ -11,11 +11,13 @@
 
 @section('button')
     {{-- button create --}}
-    <form action="" method="post">
+    <form action="{{ route('item.destroy', $data->id) }}" method="post">
+        @csrf
+        @method('delete')
         <button type="button" class="btn btn-transparent border" data-bs-toggle="modal" data-bs-target="#CreateBarang">
             Edit Barang
         </button>
-        <button type="submit" class="btn btn-transparent border border-danger text-danger">
+        <button type="submit" onclick="return confirm('Yakin akan dihapus?')" class="btn btn-transparent border border-danger text-danger">
             Hapus Barang
         </button>
     </form>

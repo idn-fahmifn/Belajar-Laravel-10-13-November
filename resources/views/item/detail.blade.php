@@ -2,18 +2,23 @@
 
 {{-- page title --}}
 @section('page-title')
-    Data Semua Barang
+    Detail Barang
 @endsection
 
 @section('sub-title')
-    Semua data tentang barang bisa anda cari disini.
+    {{ $data->item_name }}
 @endsection
 
 @section('button')
     {{-- button create --}}
-    <button type="button" class="btn btn-transparent border" data-bs-toggle="modal" data-bs-target="#CreateBarang">
-        Tambah Barang
-    </button>
+    <form action="" method="post">
+        <button type="button" class="btn btn-transparent border" data-bs-toggle="modal" data-bs-target="#CreateBarang">
+            Edit Barang
+        </button>
+        <button type="submit" class="btn btn-transparent border border-danger text-danger">
+            Hapus Barang
+        </button>
+    </form>
 @endsection
 
 @section('content')
@@ -31,30 +36,30 @@
         </div>
     @endif
 
-    @forelse ($data as $item)
-        <div class="col-md-3 my-2">
-            <div class="card">
-                <img src="{{ asset('storage/images/items/'.$item->image) }}" class="card-img-top img-cover" alt="gambar item" style="max-height: 200px">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $item->item_name }}</h5>
-                    <p class="card-text">
-                        <span class="text-success">IDR. {{ number_format($item->price) }}</span>
-                        <span class="text-muted float-end">stok : {{ $item->stok }}</span>
-                    </p>
-                    <div class="d-grid mt-2">
-                        <a href="{{ route('item.detail', $item->slug) }}" class="btn btn-primary ">Detail</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @empty
-    <div class="col-md-12">
-        <div class="alert alert-warning fade show" role="alert">
-            <strong>Belum ada data</strong>
-        </div>
-    </div>
-    @endforelse
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td class="fw-bold">Nama Barang</td>
+                    <td class="">{{ $data->item_name }}</td>
+                </tr>
 
+                <tr>
+                    <td class="fw-bold">Harga</td>
+                    <td class="">IDR. {{ number_format($data->price) }}</td>
+                </tr>
+                <tr>
+                    <td class="fw-bold">Stok</td>
+                    <td class="">{{ $data->stok }}</td>
+                </tr>
+                <tr>
+                    <td class="text-center" colspan="2">
+                        <img src="{{ asset('storage/images/items/'.$data->image) }}" width="200" alt="">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 
 
@@ -68,22 +73,24 @@
                 </div>
                 <form action="{{ route('item.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    {{-- header untuk edit --}}
+                    @method('put')
                     <div class="modal-body">
                         <div class="form-group py-2 mx-2">
                             <label for="">Nama Barang</label>
-                            <input type="text" name="nama_barang" required class="form-control mt-2">
+                            <input type="text" name="nama_barang" value="{{ $data->item_name }}" required class="form-control mt-2">
                         </div>
                         <div class="form-group py-2 mx-2">
                             <label for="">Harga</label>
-                            <input type="number" name="harga" required class="form-control mt-2">
+                            <input type="number" name="harga" value="{{ $data->price }}" required class="form-control mt-2">
                         </div>
                         <div class="form-group py-2 mx-2">
                             <label for="">Stok</label>
-                            <input type="number" name="stok" required class="form-control mt-2">
+                            <input type="number" name="stok" value="{{ $data->stok }}" required class="form-control mt-2">
                         </div>
                         <div class="form-group py-2 mx-2">
                             <label for="">Gambar</label>
-                            <input type="file" accept="image/*" name="gambar_produk" required class="form-control mt-2">
+                            <input type="file" accept="image/*" name="gambar_produk" class="form-control mt-2">
                         </div>
                     </div>
                     <div class="modal-footer">

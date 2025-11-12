@@ -122,3 +122,7 @@ Route::get('list-item', [ItemController::class, 'index'])
 Route::post('simpan-barang', [ItemController::class, 'store'])
 ->name('item.store');
 
+// Route Detail
+Route::get('item/{param}', [ItemController::class, 'detail'])
+->name('item.detail');
+

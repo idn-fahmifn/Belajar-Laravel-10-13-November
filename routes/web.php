@@ -126,3 +126,7 @@ Route::post('simpan-barang', [ItemController::class, 'store'])
 Route::get('item/{param}', [ItemController::class, 'detail'])
 ->name('item.detail');
 
+// Route update
+Route::put('item/{param}', [ItemController::class, 'update'])
+->name('item.update');
+

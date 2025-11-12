@@ -80,7 +80,7 @@ class ItemController extends Controller
             $path_lama = 'public/images/items/'.$data->image;
             if($data->image && Storage::exists($path_lama))
             {
-                // gambar lama akan dihapius
+                // gambar lama akan dihapus
                 Storage::delete($path_lama);
             }
 
@@ -94,6 +94,9 @@ class ItemController extends Controller
             // disimpan ke database
             $simpan['image'] = $nama;
         }
+
+        return $simpan;
+
     }
 
 }
